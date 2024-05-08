@@ -27,32 +27,38 @@ import {ref, computed} from 'vue';
 
 
 <template>
- <h4>Hello Oluwapelumi, Welcome to Vue 3</h4>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h4>Hello Oluwapelumi, Welcome to Vue 3</h4>
 
- <p>{{name}}</p>
- <p>{{num}}</p>
- <button v-on:click="num++">Increase Num</button>
+        <p>{{ name }}</p>
+        <p>{{ num }}</p>
+        <button class="btn btn-primary" @click="num++">Increase Num</button>
 
-  <div v-for="student in students" v-bind:key="student.id">
-  <p :id="student.paid ? 'paid' : 'notpaid'" class="btn px-2 py-1" @click="togglePaid(student.id)">{{student.name}}</p>
+        <div v-for="student in students" :key="student.id" class="mt-3">
+          <p :id="student.paid ? 'paid' : 'notpaid'" class="btn px-2 py-1 rounded" @click="togglePaid(student.id)">
+            {{ student.name }}
+          </p>
+        </div>
+
+        <div v-if="checkDay" class="mt-3 w-3 alert alert-info">Today is Wednesday</div>
+        <div v-else class="mt-3 alert alert-warning">Today is not Wednesday</div>
+      </div>
+    </div>
   </div>
-
-  <div v-if="checkDay">Today is Wednesday</div>
-  <div v-if="check">Today is Tuesday</div>
-  <div v-else>Today is not Tuesday</div>
 </template>
 
 
 
 
-
-<style scoped> 
+<style scoped>
   #paid {
-      background-color: green;
-      }
+    background-color: green;
+  }
+
   #notpaid {
-      background-color: pink;
-      text: red;
-      }
-      
+    background-color: pink;
+    color: red;
+  }
 </style>
