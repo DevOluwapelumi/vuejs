@@ -15,10 +15,10 @@ import {ref, computed} from 'vue';
     ]
 
   const togglePaid = (id) => {
-    let std = students.find((student) => student.id == id);
-    std.paid = !std.paid;
-    console.log(std.paid);  
-  }
+    const student = students.find((student) => student.id === id);
+    student.paid = !student.paid;
+    console.log(student.paid);  
+  };
 
 </script>
 
