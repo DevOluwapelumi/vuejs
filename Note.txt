@@ -1,0 +1,10 @@
+// <button @click="num++">Increase Num</button> // --- the "@" is just like a shortcut which can be used instead of the "v-on:"
+//  <div v-for="student in students" :key="student.id"></div> // --- the ":key" is just like a shortcut which can be used instead of the "v-bind:key"
+
+
+ <div v-if="day=='Tuesday'">Today is Tuesday</div>
+  <div v-else-if="day=='Wednesday">Today is Wednesday</div>
+
+  
+"ref" is used for a variable that can change
+"v-if" is faster then "v-else" in terms of

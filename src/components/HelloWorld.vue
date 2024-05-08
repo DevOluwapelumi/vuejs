@@ -1,41 +1,58 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+<script setup>
+import {ref, computed} from 'vue';
+  const name = "Instr. Miss Janet";
+  const num = ref(5);
+  const checkDay =ref(true)
+  const check =ref(true)
+  const day =ref('Tuesday')
+
+  const students = [
+    {id:1, name: "Favour", paid: false},
+    {id:2, name: "Pelumi", paid: true},
+    {id:3, name: "Oyin", paid: false},
+    {id:4, name: "Joshua", paid: true},
+    {id:5, name: "James", paid: false},
+    ]
+
+  const togglePaid = (id) => {
+    let std = students.find((student) => student.id == id);
+    std.paid = !std.paid;
+    console.log(std.paid);  
+  }
+
 </script>
 
+
+
+
+
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+ <h4>Hello Oluwapelumi, Welcome to Vue 3</h4>
+
+ <p>{{name}}</p>
+ <p>{{num}}</p>
+ <button v-on:click="num++">Increase Num</button>
+
+  <div v-for="student in students" v-bind:key="student.id">
+  <p :id="student.paid ? 'paid' : 'notpaid'" class="btn px-2 py-1" @click="togglePaid(student.id)">{{student.name}}</p>
   </div>
+
+  <div v-if="checkDay">Today is Wednesday</div>
+  <div v-if="check">Today is Tuesday</div>
+  <div v-else>Today is not Tuesday</div>
 </template>
 
-<style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
 
-h3 {
-  font-size: 1.2rem;
-}
 
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
 
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
-}
+
+<style scoped> 
+  #paid {
+      background-color: green;
+      }
+  #notpaid {
+      background-color: pink;
+      text: red;
+      }
+      
 </style>
