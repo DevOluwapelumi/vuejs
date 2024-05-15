@@ -2,10 +2,10 @@
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="shadow-lg p-4 bg-white rounded">
             <form class="col-12" @submit.prevent="signup">
-                <h3 class="text-center mb-4">Sign Up</h3>
+                <h3 class="text-center mb-4">Sign Up</h3> <hr>
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <input class="form-control" placeholder="Pelumi" v-model="name">
+                    <input class="form-control" placeholder="   Enter your name" v-model="name">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Gender</label><br>
@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const name = ref("");
 const gender = ref("");
@@ -70,11 +70,23 @@ const signup = () => {
     console.log(users.value);
     localStorage.setItem('user', JSON.stringify(users.value));
 };
+
+    onMounted(() => {
+        console.log("Men mount")
+        users.value = localStorage["user"] ? JSON.parse(localStorage.getItem("user")) : []
+        // users.value = JSON.parse(localStorage.getItem("users"));
+    })
+
+
+
+
+
+
 </script>
 
 <style scoped>
 .shadow-lg {
-    max-width: 500px;
+    max-width: 500%;
     border-radius: 10px;
 }
 .vh-100 {
