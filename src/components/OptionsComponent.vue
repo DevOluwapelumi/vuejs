@@ -2,57 +2,62 @@
     <div class="container">
       <form
         action=""
-        class="card col-sm-6 col-md-6 col-sm-12 px-4 mt-5 mx-auto shadow"
+        class="card col-md-6 col-sm-12 px-4 mt-5 mx-auto shadow"
         @submit.prevent="go"
       >
         <h4 class="text-center mt-3">Sign-up form</h4>
-        <div>
-          <label for="" class="my-2">Name</label>
+        <div class="form-group">
+          <label for="name" class="my-2">Name</label>
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Enter your name"
             class="form-control"
             v-model="v$.form.name.$model"
             name="name"
-            id=""
+            id="name"
           />
           <div v-for="error in v$.form.name.$errors" :key="error">
             <span class="text-sm text-danger">{{ error.$message }}</span>
           </div>
+        </div>
   
-          <label for="" class="my-2">Email</label>
+        <div class="form-group">
+          <label for="email" class="my-2">Email</label>
           <input
-            type=""
-            placeholder="Email"
+            type="email"
+            placeholder="Enter your email"
             class="form-control"
             v-model="v$.form.email.$model"
-            name="Email"
-            id=""
+            name="email"
+            id="email"
           />
           <div v-for="error in v$.form.email.$errors" :key="error">
             <span class="text-sm text-danger">{{ error.$message }}</span>
           </div>
+        </div>
   
-          <label for="" class="my-2">Password</label>
+        <div class="form-group">
+          <label for="password" class="my-2">Password</label>
           <input
-            type="text"
-            placeholder="Password"
+            type="password"
+            placeholder="Enter your password"
             class="form-control"
             v-model="v$.form.password.$model"
-            name="Password"
-            id=""
+            name="password"
+            id="password"
           />
           <div v-for="error in v$.form.password.$errors" :key="error">
             <span class="text-sm text-danger">{{ error.$message }}</span>
           </div>
+        </div>
   
-          <div>
-            <button class="btn btn-primary w-100 mt-3 mb-3">Sign up</button>
-          </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary w-100 mt-3 mb-3">Sign up</button>
         </div>
       </form>
     </div>
   </template>
+  
   
   <script>
   import { ref } from "vue";

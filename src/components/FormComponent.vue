@@ -52,7 +52,6 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { required, minLength, maxLength, email } from "@vuelidate/validators";
 
 const name = ref("");
 const gender = ref("");
