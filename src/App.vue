@@ -5,9 +5,16 @@ import OptionsComponent from './components/OptionsComponent.vue';
 </script>
 
 <template>
+    <RouterLink to="/">Go to Home</RouterLink>
+    <RouterLink to="/about">Go to About</RouterLink>
+
+    <RouterView/>
+
+
+
  <!-- <HelloWorld/> -->
  <!-- <FormComponent/> -->
- <OptionsComponent/>
+ <!-- <OptionsComponent/> -->
 </template>
 
 <style scoped> 
