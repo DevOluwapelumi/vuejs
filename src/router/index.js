@@ -10,7 +10,7 @@ const routes = [
     {path: '/', name:'home', component: HomeView},
     {path: '/about', 
         name:'about', 
-        component,
+        component: AboutView,
         children:[
             {path: 'about-us', name:'uss', component: AboutUs},
             {path: 'our-company', name:'company', component: CompanyInfo},

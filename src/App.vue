@@ -10,11 +10,19 @@ import OptionsComponent from './components/OptionsComponent.vue';
 </script>
 
 <template>
-    <RouterLink :to="{name:'home'}">Go to Home</RouterLink>
-    <RouterLink :to="{name:'about'}">Go to About</RouterLink>
-    <RouterLink :to="{name:'uss'}">Go to AboutUs</RouterLink>
-    <RouterLink :to="{name:'company'}">Go to OurComapny</RouterLink>
-    <RouterLink :to="`/user/${user.name}`">Go to User</RouterLink>
+
+
+
+<nav class="navbar">
+    <div class="navbar-menu">
+        <router-link class="navbar-item" :to="{ name: 'home' }">Home</router-link>
+        <router-link class="navbar-item" :to="{ name: 'about' }">About</router-link>
+        <router-link class="navbar-item" :to="{ name: 'uss' }">About Us</router-link>
+        <router-link class="navbar-item" :to="{ name: 'company' }">Our Company</router-link>
+        <router-link class="navbar-item" :to="`/user/${user.name}`">User</router-link>
+    </div>
+</nav>
+
 
     <RouterView/>
 
@@ -26,5 +34,26 @@ import OptionsComponent from './components/OptionsComponent.vue';
 </template>
 
 <style scoped> 
+    .navbar {
+    background-color: #333;
+    padding: 10px;
+}
+
+.navbar-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-item {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar-item:hover {
+    background-color: #555;
+}
 
 </style>
