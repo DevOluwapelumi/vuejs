@@ -3,7 +3,7 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <h4>Hello Oluwapelumi, Welcome to User View</h4>
-            This is our User page {{ $route }}
+            This is our User page {{ $route.param }}
         </div>
       </div>
     </div>
