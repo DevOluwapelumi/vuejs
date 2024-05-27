@@ -12,7 +12,10 @@ export const useToDoStore = defineStore('todoStore',{
         }
     },
     getters:{
-        // todoCount:(state)=>state.todos.length
+        todoCount:(state)=>state.todos.length,
+        completedTodos(state){
+            return state.todos.filter((todo)=>todo.completed)
+        }
     },
 
     actions:{

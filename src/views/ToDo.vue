@@ -4,6 +4,10 @@
             <div class="card-header">
                 <h3 class="text-center">Todo List</h3>
             </div>
+            <div class="todo-count p-3 mb-4">
+                Count: <span class="count-value">{{ store.todoCount }}</span>
+                <hr>
+            </div>
             <div class="card-body">
                 <table class="table table-hover">
                     <thead class="thead-dark">
@@ -29,22 +33,18 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import { useToDoStore } from '../store/todoStore.js'
-import {onMounted} from 'vue';
+import { onMounted } from 'vue';
 
-const store = useToDoStore()
-console.log(store)
+const store = useToDoStore();
+console.log(store);
 
-// console.log(store.todoCount)
-
-onMounted(()=>{
-    store.getAllTodos()
-})
-
-
+onMounted(() => {
+    store.getAllTodos();
+});
 </script>
-
 
 <style scoped>
 .container {
@@ -64,6 +64,21 @@ onMounted(()=>{
     border-top-right-radius: 10px;
 }
 
+.todo-count {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.count-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
 .table-hover tbody tr:hover {
     background-color: #f8f9fa;
 }
@@ -74,19 +89,5 @@ onMounted(()=>{
 
 .badge-warning {
     background-color: #ffc107;
-}
-
-.btn {
-    border-radius: 20px;
-}
-
-.btn-success {
-    background-color: #28a745;
-    border: none;
-}
-
-.btn-warning {
-    background-color: #ffc107;
-    border: none;
 }
 </style>
