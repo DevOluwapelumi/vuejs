@@ -4,8 +4,17 @@
             <div class="card-header">
                 <h3 class="text-center">Todo List</h3>
             </div>
-            <div class="todo-count p-3 mb-4">
-                Count: <span class="count-value">{{ store.todoCount }}</span>
+            <div class="todo-count p-3 mb-4 d-flex justify-content-between align-items-center">
+                <div>
+                    Total Todo Count: <span class="count-value">{{ filteredTodos.length }}</span>
+                </div>
+                <div>
+                    <select v-model="filter" @change="applyFilter" class="form-select">
+                        <option value="all">Display All</option>
+                        <option value="completed">Display Completed</option>
+                        <option value="pending">Display Pending</option>
+                    </select>
+                </div>
                 <hr>
             </div>
             <div class="card-body">
@@ -18,7 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr :key="index" v-for="(todo, index) in store.todos">
+                        <tr :key="index" v-for="(todo, index) in filteredTodos">
                             <th scope="row">{{ todo.id }}</th>
                             <td>{{ todo.todo }}</td>
                             <td>
@@ -35,11 +44,25 @@
 </template>
 
 <script setup>
-import { useToDoStore } from '../store/todoStore.js'
-import { onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
+import { useToDoStore } from '../store/todoStore.js';
 
 const store = useToDoStore();
-console.log(store);
+const filter = ref('all');
+
+const filteredTodos = computed(() => {
+    if (filter.value === 'completed') {
+        return store.todos.filter(todo => todo.completed);
+    } else if (filter.value === 'pending') {
+        return store.todos.filter(todo => !todo.completed);
+    } else {
+        return store.todos;
+    }
+});
+
+const applyFilter = () => {
+    // Logic to apply filter, currently handled by computed property.
+};
 
 onMounted(() => {
     store.getAllTodos();
@@ -77,6 +100,12 @@ onMounted(() => {
     font-size: 1.5rem;
     font-weight: bold;
     color: #007bff;
+}
+
+.form-select {
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
 }
 
 .table-hover tbody tr:hover {
