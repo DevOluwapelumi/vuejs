@@ -1,7 +1,8 @@
 <template>
 
     <div>Welcome to Recipes</div>
-    <RecipeCard v-for="(recipe, index) in recipes" :key=""index/>
+    <RecipeModal/>
+    <!-- <RecipeCard v-for="(recipe, index) in recipes" :key=""index/> -->
     
 </template>
 
