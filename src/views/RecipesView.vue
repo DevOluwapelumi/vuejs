@@ -1,18 +1,22 @@
 <template>
 
     <div>Welcome to Recipes</div>
-    <RecipeModal/>
-    <!-- <RecipeCard v-for="(recipe, index) in recipes" :key=""index/> -->
-    
+    <div class="container">
+        <div class="row">
+    <RecipeCard v-for="(recipe, index) in recipes" :key="index" :recipedetails="recipe"/>
+</div>
+</div>
 </template>
 
 <script setup>
 import { onMounted } from 'vue';
-import { useRecipeStore } from '../store/recipeStore.js';
+import { useRecipeStore } from '@/store/recipeStore';
 import RecipeCard from "../components/RecipeCard.vue";
 import { storeToRefs } from 'pinia';
 
 const store = useRecipeStore()
+const {recipes} = storeToRefs(store)
+
 onMounted(() => {
     store.getAllRecipes();
 });

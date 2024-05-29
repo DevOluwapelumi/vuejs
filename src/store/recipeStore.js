@@ -2,22 +2,13 @@ import { defineStore } from "pinia";
 import axios from 'axios'
 const url = "https://dummyjson.com/recipes"
 
-
-//  store -
-//  getters -
-//  actions -
-
 export const useRecipeStore = defineStore('recipeStore',{
-    store:()=> {
+    state:()=> {
         return{
             recipes:[]
         }
     },
     getters:{
-        todoCount:(state)=>state.todos.length,
-        completedTodos(state){
-            return state.todos.filter((todo)=>todo.completed)
-        }
     },
 
     actions:{
@@ -28,7 +19,5 @@ export const useRecipeStore = defineStore('recipeStore',{
                 this.recipes = response.data.recipes
             })
         }
-    },
-    persist:true
-
+    }
 })
