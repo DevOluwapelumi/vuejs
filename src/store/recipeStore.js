@@ -1,14 +1,16 @@
 import { defineStore } from "pinia";
 import axios from 'axios'
+const url = "https://dummyjson.com/recipes"
+
 
 //  store -
 //  getters -
 //  actions -
 
-export const useToDoStore = defineStore('todoStore',{
+export const useRecipeStore = defineStore('recipeStore',{
     store:()=> {
         return{
-            todos:[]
+            recipes:[]
         }
     },
     getters:{
@@ -19,11 +21,11 @@ export const useToDoStore = defineStore('todoStore',{
     },
 
     actions:{
-        getAllTodos(){
-            axios.get('https://dummyjson.com/todos')
+        getAllRecipes(){
+            axios.get(url)
             .then((response)=>{
-                console.log(response.data.todos);
-                this.todos = response.data.todos
+                console.log(response);
+                this.recipes = response.data.recipes
             })
         }
     },

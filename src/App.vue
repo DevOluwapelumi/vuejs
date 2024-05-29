@@ -20,6 +20,7 @@ import OptionsComponent from './components/OptionsComponent.vue';
         <router-link class="navbar-item" :to="{ name: 'uss' }">About Us</router-link>
         <router-link class="navbar-item" :to="{ name: 'company' }">Our Company</router-link>
         <router-link class="navbar-item" :to="{ name: 'todo' }">Todo List</router-link>
+        <router-link class="navbar-item" :to="{ name: 'recipes' }">Recipes List</router-link>
         <router-link class="navbar-item" :to="`/user/${user.name}`">User</router-link>
     </div>
 </nav>

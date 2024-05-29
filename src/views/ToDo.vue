@@ -15,6 +15,11 @@
                         <option value="pending">Display Pending</option>
                     </select>
                 </div>
+
+                    <div>
+                        <button class="btn btn-danger" @click="store.$reset()">Reset State</button>
+                
+                </div>
                 <hr>
             </div>
             <div class="card-body">
@@ -46,8 +51,10 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useToDoStore } from '../store/todoStore.js';
+// import { storeToRefs } from 'pinia';
 
 const store = useToDoStore();
+// const {todos, todoCount} = storeToRefs(store)
 const filter = ref('all');
 
 const filteredTodos = computed(() => {
@@ -64,10 +71,20 @@ const applyFilter = () => {
     // Logic to apply filter, currently handled by computed property.
 };
 
+const animals = {
+    name: 'Tiger',
+    color: 'Mango'
+}
+
+const {name, color} = animals
+console.log(name)
+console.log(color)
+
 onMounted(() => {
     store.getAllTodos();
 });
 </script>
+
 
 <style scoped>
 .container {
