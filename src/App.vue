@@ -3,59 +3,82 @@ import HelloWorld from './components/HelloWorld.vue';
 import FormComponent from './components/FormComponent.vue';
 import OptionsComponent from './components/OptionsComponent.vue';
 
-    const user= {
-        id:'123',
-        name:'Pelumi'
-    }
+const user = {
+  id: '123',
+  name: 'Pelumi',
+};
 </script>
 
 <template>
-
-
-
-<nav class="navbar">
-    <div class="navbar-menu">
-        <router-link class="navbar-item" :to="{ name: 'home' }">Home</router-link>
-        <router-link class="navbar-item" :to="{ name: 'about' }">About</router-link>
-        <router-link class="navbar-item" :to="{ name: 'uss' }">About Us</router-link>
-        <router-link class="navbar-item" :to="{ name: 'company' }">Our Company</router-link>
-        <router-link class="navbar-item" :to="{ name: 'todo' }">Todo List</router-link>
-        <router-link class="navbar-item" :to="{ name: 'recipes' }">Recipes List</router-link>
-        <router-link class="navbar-item" :to="`/user/${user.name}`">User</router-link>
+  <nav class="navbar navbar-expand-lg bg-body-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'home' }">Home</router-link>
+          </li> <hr>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'about' }">About</router-link>
+          </li> <hr>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'uss' }">About Us</router-link>
+          </li> <hr>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'company' }">Our Company</router-link>
+          </li> <hr>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'todo' }">Todo List</router-link>
+          </li> <hr>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'recipes' }">Recipes List</router-link>
+          </li> <hr>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="`/user/${user.name}`">User</router-link>
+          </li> <hr>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
-</nav>
+  </nav>
 
+  <RouterView />
 
-    <RouterView/>
-
-
-
- <!-- <HelloWorld/> -->
- <!-- <FormComponent/> -->
- <!-- <OptionsComponent/> -->
+  <!-- <HelloWorld /> -->
+  <!-- <FormComponent /> -->
+  <!-- <OptionsComponent /> -->
 </template>
 
-<style scoped> 
-    .navbar {
-    background-color: #333;
-    padding: 10px;
+<style scoped>
+.navbar {
+  background-color: #333;
+  padding: 5px;
 }
 
-.navbar-menu {
-    display: flex;
-    justify-content: space-between;
+.navbar-nav .nav-link:hover {
+  background-color: #555;
 }
 
-.navbar-item {
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+.dropdown-menu .dropdown-item {
+  color: #000;
 }
 
-.navbar-item:hover {
-    background-color: #555;
+.dropdown-menu .dropdown-item:hover {
+  background-color: #555;
+  color: #fff;
 }
-
 </style>
