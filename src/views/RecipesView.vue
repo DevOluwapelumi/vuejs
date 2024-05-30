@@ -1,6 +1,6 @@
 <template>
 
-    <div>Welcome to Recipes</div>
+    <h3 class="text-center">Welcome to Recipes</h3> <hr>
     <div class="container">
         <div class="row">
     <RecipeCard v-for="(recipe, index) in recipes" :key="index" :recipedetails="recipe"/>
