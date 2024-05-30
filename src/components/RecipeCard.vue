@@ -4,22 +4,29 @@ defineProps(['recipedetails']);
 </script>
 
 <template>
-    <div class="card col-md-6 mt-5 ms-2" style="width: 20rem;">
-      <img :src="recipedetails.image" class="card-img-top mt-2 animated-img" width="100" alt="" />
+    <div class="card col-md-6 mt-5 ms-2 bg-success shadow" style="width: 20rem;">
+      <img :src="recipedetails.image" class="card-img-top mt-2 animated-img shadow" width="100" alt="" />
       <hr>
+
       <div class="card-body">
         <h5 class="card-title">{{ recipedetails.name }}</h5>
         <p class="card-text">{{ recipedetails.cuisine }}</p>
+        <div class="d-flex align-items-center justify-content-between shadow">
         <button
           type="button"
-          class="btn btn-primary"
+          class="btn btn-secondary"
           data-bs-toggle="modal"
           :data-bs-target="'#modal' + recipedetails.id"
         >
-          View Recipes Details
+          View Recipe Details
         </button>
+        <div class="badge text-bg-dark fs-6 rounded-pill stretched-pill ms-2">
+          {{ recipedetails.rating }}
+        </div>
+      </div>
       </div>
     </div>
+   
   
     <!-- Modal -->
     <div
@@ -41,6 +48,7 @@ defineProps(['recipedetails']);
         </div>
       </div>
     </div>
+    
   </template>
   
 
