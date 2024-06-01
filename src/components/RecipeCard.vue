@@ -1,6 +1,15 @@
 <script setup>
+import { ref } from 'vue';
 import RecipeModal from './RecipeModal.vue';
 defineProps(['recipedetails']);
+
+// State to manage the like button
+const isLiked = ref(false);
+
+// Method to toggle the like button state
+const toggleLike = () => {
+  isLiked.value = !isLiked.value;
+};
 </script>
 
 <template>
@@ -29,8 +38,8 @@ defineProps(['recipedetails']);
             <i class="fas fa-star" v-for="n in Math.floor(recipedetails.rating)" :key="n"></i>
             <i class="fas fa-star-half-alt" v-if="recipedetails.rating % 1 !== 0"></i>
           </div>
-          <button class="like-button">
-            <i class="fas fa-heart"></i>
+          <button class="like-button" @click="toggleLike">
+            <i :class="['fas', isLiked ? 'fa-heart' : 'fa-heart-broken']"></i>
           </button>
         </div>
       </div>
@@ -94,8 +103,15 @@ defineProps(['recipedetails']);
 .like-button {
   background-color: transparent;
   border: none;
-  color: red;
   font-size: 1.5rem;
+}
+
+.like-button .fa-heart {
+  color: red;
+}
+
+.like-button .fa-heart-broken {
+  color: grey;
 }
 
 .stars {
