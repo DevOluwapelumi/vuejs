@@ -13,26 +13,34 @@ const toggleLike = () => {
 </script>
 
 <template>
-  <div class="card card-custom mt-5 ms-2 bg-success shadow position-relative">
-    <div class="image-container">
+ <div class="card card-custom mt-5 ms-2 bg-secondary shadow-lg position-relative">
+    <div class="image-container position-relative">
       <img
         :src="recipedetails.image"
         class="card-img-top animated-img"
         alt=""
       />
+      <div class="badge badge-custom text-bg-dark fs-6 rounded-pill position-absolute top-0 end-0 m-2">
+        {{ recipedetails.rating.toFixed(1) }}
+      </div>
     </div>
+
+    
     <div class="card-body position-absolute bottom-0 start-0 p-3 w-100 text-white bg-dark bg-opacity-50">
+      
       <h5 class="card-title">{{ recipedetails.name }}</h5>
       <p class="card-text">{{ recipedetails.cuisine }}</p>
       <div class="d-flex align-items-center justify-content-between">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-secondary animated-btn"
           data-bs-toggle="modal"
           :data-bs-target="'#modal' + recipedetails.id"
         >
           Details...
         </button>
+
+
         <div class="d-flex align-items-center ms-2">
           <div class="stars me-2">
             <i class="fas fa-star" v-for="n in Math.floor(recipedetails.rating)" :key="n"></i>
@@ -42,6 +50,8 @@ const toggleLike = () => {
             <i :class="['fas', isLiked ? 'fa-heart' : 'fa-heart-broken']"></i>
           </button>
         </div>
+
+
       </div>
     </div>
 
@@ -120,5 +130,17 @@ const toggleLike = () => {
 
 .badge-custom {
   background-color: #343a40;
+}
+
+@keyframes colorChange {
+  0% { background-color: #6c757d; }
+  25% { background-color: #5a6268; }
+  50% { background-color: #4e555b; }
+  75% { background-color: #5a6268; }
+  100% { background-color: #6c757d; }
+}
+
+.animated-btn {
+  animation: colorChange 2s infinite;
 }
 </style>
