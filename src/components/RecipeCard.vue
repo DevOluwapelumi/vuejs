@@ -2,17 +2,28 @@
 import { ref } from 'vue';
 import RecipeModal from './RecipeModal.vue';
 defineProps(['recipedetails']);
+const emit = defineEmits(['updateFavourites', 'changeName'])
+const added = ref(false)
+const sendItem = ()=>{
+  // emit('updateName',['apple','banana'])
+  emit('changeName')
+}
+const toggleFave = ()=>{
+  emit('updateFavourites', added.value)
+  added.value = !added.value
+}
 
 // State to manage the like button
-const isLiked = ref(false);
+// const isLiked = ref(false);
 
 // Method to toggle the like button state
-const toggleLike = () => {
-  isLiked.value = !isLiked.value;
-};
+// const toggleLike = () => {
+//   isLiked.value = !isLiked.value;
+// };
 </script>
 
 <template>
+
  <div class="card card-custom mt-5 ms-2 bg-secondary shadow-lg position-relative">
     <div class="image-container position-relative">
       <img
@@ -20,9 +31,15 @@ const toggleLike = () => {
         class="card-img-top animated-img"
         alt=""
       />
-      <div class="badge badge-custom text-bg-dark fs-6 rounded-pill position-absolute top-0 end-0 m-2">
+      <!-- <div class="badge badge-custom text-bg-dark fs-6 rounded-pill position-absolute top-0 end-0 m-2">
         {{ recipedetails.rating.toFixed(1) }}
+      </div> -->
+      <div class="badge badge-custom text-bg-dark fs-6 rounded-pill position-absolute top-0 end-0 m-2">
+        {{ recipedetails.cookTimeMinutes + "  Mins"}} 
       </div>
+      <!-- <div class="badge badge-custom2 text-bg-dark fs-6 rounded-pill position-absolute top-0 end-0 m-2">
+        {{ recipedetails.prepTimeMinutes}}
+      </div> -->
     </div>
 
     
@@ -30,6 +47,7 @@ const toggleLike = () => {
       
       <h5 class="card-title">{{ recipedetails.name }}</h5>
       <p class="card-text">{{ recipedetails.cuisine }}</p>
+      <button @click="sendItem">Send Item to Parent</button>
       <div class="d-flex align-items-center justify-content-between">
         <button
           type="button"
@@ -46,9 +64,10 @@ const toggleLike = () => {
             <i class="fas fa-star" v-for="n in Math.floor(recipedetails.rating)" :key="n"></i>
             <i class="fas fa-star-half-alt" v-if="recipedetails.rating % 1 !== 0"></i>
           </div>
-          <button class="like-button" @click="toggleLike">
+          <!-- <button class="like-button" @click="toggleLike">
             <i :class="['fas', isLiked ? 'fa-heart' : 'fa-heart-broken']"></i>
-          </button>
+          </button> -->
+            <i :class="`${added?'fa-solid':'fa-regular'} text-danger fa-heart`" @click="toggleFave"></i>
         </div>
 
 
@@ -131,6 +150,7 @@ const toggleLike = () => {
 .badge-custom {
   background-color: #343a40;
 }
+
 
 @keyframes colorChange {
   0% { background-color: #6c757d; }
