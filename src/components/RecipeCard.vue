@@ -12,14 +12,11 @@ const toggleFave = ()=>{
   emit('updateFavourites', added.value)
   added.value = !added.value
 }
-
-// State to manage the like button
-// const isLiked = ref(false);
-
-// Method to toggle the like button state
-// const toggleLike = () => {
-//   isLiked.value = !isLiked.value;
-// };
+const updatedName = ref('')
+const updateName = (name) => {
+  console.log(name)
+  updatedName.value = name
+}
 </script>
 
 <template>
@@ -45,7 +42,7 @@ const toggleFave = ()=>{
     
     <div class="card-body position-absolute bottom-0 start-0 p-3 w-100 text-white bg-dark bg-opacity-50">
       
-      <h5 class="card-title">{{ recipedetails.name }}</h5>
+      <h5 class="card-title">{{ updatedName || recipedetails.name }}</h5>
       <p class="card-text">{{ recipedetails.cuisine }}</p>
       <button @click="sendItem">Send Item to Parent</button>
       <div class="d-flex align-items-center justify-content-between">
@@ -89,7 +86,7 @@ const toggleFave = ()=>{
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <RecipeModal :recipedetails="recipedetails" />
+            <RecipeModal :recipedetails="recipedetails" @update-name-to-parent="updateName"/>
           </div>
         </div>
       </div>

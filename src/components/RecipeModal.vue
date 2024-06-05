@@ -1,16 +1,25 @@
 <script setup>
   import { ref } from 'vue';
-  defineProps(['recipedetails']);
+  const propsValue = defineProps(['recipedetails', 'name']);
+  const emitValue2 = defineEmits(['updateNameToParent'])
 
-  const newName = ref('');
+ 
+  const inputValue = ref(propsValue.recipedetails.name)
+  const updatedName = ref('')
+
   const editName = () => {
-    newName.value = recipedetails.name;
-    $('#editNameModal').modal('show'); // Using jQuery to show the modal
+    editStatus.value = true
   }
-  const saveName = () => {
-    recipedetails.name = newName.value;
-    $('#editNameModal').modal('hide'); // Hide the modal after saving
+  const editStatus = ref(false)
+
+  const saveChanges = () =>{
+    editStatus.value = false
+    updatedName.value = inputValue.value
+    emitValue2('updateNameToParent', updatedName.value)
+   
   }
+ 
+ 
 </script>
 
 <template>
@@ -18,8 +27,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <div>
-          <h5 class="modal-title" id="exampleModalLabel">Name:  {{ recipedetails.name }}</h5>
-          <button class="btn btn-sm btn-outline-primary" @click="editName">Edit Name</button>
+          <h5 v-if="!editStatus" class="modal-title" id="exampleModalLabel">Name:  {{updatedName || recipedetails.name }}
+          <i class="fas fa-edit" @click="editName"></i></h5>
+          <div v-else class="d-flex">
+            <input type="text" class="form-control" v-model="inputValue">
+            <button class="btn btn-info ms-2" @click="saveChanges">Save</button>
+          </div>
         </div>
       </div>
       <div class="modal-body shadow bg-secondary">
